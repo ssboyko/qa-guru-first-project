@@ -24,7 +24,6 @@ import static com.codeborne.selenide.Selenide.*;
 public class DemoqaFormTests {
     File file = new File("src/test/resources/test-image.jpeg");
     static Logger logger = LoggerFactory.getLogger(DemoqaFormTests.class);
-
     @BeforeAll
     static void config() {
         Configuration.startMaximized = true;
