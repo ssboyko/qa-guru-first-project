@@ -1,25 +1,18 @@
+package tests;
+
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.*;
-import static com.codeborne.selenide.Selenide.*;
 
 public class DemoqaFormTests {
     File file = new File("src/test/resources/test-image.jpeg");
@@ -46,16 +39,22 @@ public class DemoqaFormTests {
         $("#subjectsInput").setValue("Eng").pressEnter();
         $("#hobbies-checkbox-2").parent().click();
         $("#uploadPicture").uploadFile(file);
-        $("#currentAddress").setValue("Some address");
-        $("#react-select-3-input").setValue("NCR").pressEnter();
-        $("#react-select-4-input").setValue("Del").pressEnter();
+        $("#currentAddress").setValue("Some address 1");
+        $("#state").scrollTo().click();
+        $("#stateCity-wrapper").$(byText("NCR")).click();
+        $("#city").click();
+        $("#stateCity-wrapper").$(byText("Noida")).click();
         $("#submit").click();
+//        $("#react-select-3-input").setValue("NCR").pressEnter();
+//        $("#react-select-4-input").setValue("Del").pressEnter();
+//        $(".btn-primary").hover().click();
+
 
 
         $(".table-responsive").shouldHave(text("Stepan Boyko"), text("test@gmail.com"),
                 text("Male"), text("9171111111"), text("28 April,1989"), text("English"),
                 text("Reading"), text("test-image.jpeg"), text("Some address"),
-                text("NCR Delhi"));
+                text("NCR Noida"));
 
 
     }
